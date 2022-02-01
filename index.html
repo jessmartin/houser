@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Houser</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <canvas id="twod-house" width="400" height="400"></canvas>
+    <div id="roofAngleBlock">
+      Roof Angle
+      <input type="range" min="60" max="130" value="90" id="roofAngle">
+      <label name="roofAngle" id="roofAngleLabel">90&deg;</label>
+    </div>
+    <div id="wallThicknessBlock">
+      Wall Thickness
+      <input type="range" min="4" max="20" value="8" id="wallThickness">
+      <label name="wallThickness" id="wallThicknessLabel">8"</label>
+    </div>
+    <div id="firstFloorCeilingHeightBlock">
+      First Floor Ceiling Height
+      <input type="range" min="7" max="12" value="8" id="firstFloorCeilingHeightSlider">
+      <label name="firstFloorCeilingHeight" id="firstFloorCeilingHeightLabel">8'</label>
+    <div id="widthBlock">
+      Width
+      <input type="range" min="8" max="30" value="16" id="widthSlider">
+      <label name="widthSlider" id="widthLabel">16"</label>
+    </div>
+    
+    <script src="script.js"></script>
+  </body>
+</html>
