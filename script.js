@@ -1,7 +1,12 @@
+// Set up the UI
+// Add the sliders to the UI
+// Read the values from sliders and draw
+// Draw the house
+
 function draw(widthInFeet, roofPitchAngleInDegrees, wallThicknessInches, firstFloorCeilingHeightFeet) {
   var canvas = document.getElementById('twod-house');
   var ctx = canvas.getContext('2d');
- 
+
   // Use the identity matrix while clearing the canvas
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -10,9 +15,9 @@ function draw(widthInFeet, roofPitchAngleInDegrees, wallThicknessInches, firstFl
   // All measurements are in feet, unless otherwise specified
   var width = widthInFeet * pixelScale;
   var depth = 24 * pixelScale;
-  var wallThickness = wallThicknessInches/12 * pixelScale; // What's typical?
+  var wallThickness = wallThicknessInches / 12 * pixelScale; // What's typical?
   var rooflineHeight = 10 * pixelScale;
-  var subfloorThickness = 8/12 * pixelScale; // Look into this?
+  var subfloorThickness = 8 / 12 * pixelScale; // Look into this?
 
   var overhangWidth = 2 * pixelScale; // Soffit + fascia board
   var firstFloorCeilingHeight = firstFloorCeilingHeightFeet * pixelScale;
@@ -24,41 +29,41 @@ function draw(widthInFeet, roofPitchAngleInDegrees, wallThicknessInches, firstFl
   ctx.setLineDash([]);
   ctx.fillStyle = 'rgb(255, 255, 255, 0.8)';
   // ctx.scale(0.5,0.5);
-  
+
   // floor
   ctx.beginPath();
-  ctx.moveTo(-1*(width/2), 0);
-  ctx.lineTo(width/2, 0);
+  ctx.moveTo(-1 * (width / 2), 0);
+  ctx.lineTo(width / 2, 0);
   ctx.stroke();
 
   // left wall
-  ctx.strokeRect(-1*(width/2), 0, wallThickness, -rooflineHeight);
+  ctx.strokeRect(-1 * (width / 2), 0, wallThickness, -rooflineHeight);
   ctx.fillStyle = 'rgb(255, 255, 255, 0.4)';
-  ctx.fillRect(-1*(width/2), 0, wallThickness, -rooflineHeight);
+  ctx.fillRect(-1 * (width / 2), 0, wallThickness, -rooflineHeight);
 
   // right wall
-  ctx.strokeRect(width/2 - wallThickness, 0, wallThickness, -rooflineHeight);
-  ctx.fillRect(width/2 - wallThickness, 0, wallThickness, -rooflineHeight);
+  ctx.strokeRect(width / 2 - wallThickness, 0, wallThickness, -rooflineHeight);
+  ctx.fillRect(width / 2 - wallThickness, 0, wallThickness, -rooflineHeight);
 
   // second floor ceiling
-  ctx.strokeRect(-1*(width/2) + wallThickness, -firstFloorCeilingHeight, width - 2* wallThickness, subfloorThickness);
-  ctx.fillRect(-1*(width/2) + wallThickness, -firstFloorCeilingHeight, width - 2* wallThickness, subfloorThickness);
+  ctx.strokeRect(-1 * (width / 2) + wallThickness, -firstFloorCeilingHeight, width - 2 * wallThickness, subfloorThickness);
+  ctx.fillRect(-1 * (width / 2) + wallThickness, -firstFloorCeilingHeight, width - 2 * wallThickness, subfloorThickness);
 
   ctx.beginPath();
   // left soffit
-  ctx.moveTo(-1*(width/2), -rooflineHeight);
-  ctx.lineTo(-1*(width/2) - overhangWidth, -rooflineHeight);
-  
+  ctx.moveTo(-1 * (width / 2), -rooflineHeight);
+  ctx.lineTo(-1 * (width / 2) - overhangWidth, -rooflineHeight);
+
   // right soffit
-  ctx.moveTo(width/2, -rooflineHeight);
-  ctx.lineTo(1*(width/2) + overhangWidth, -rooflineHeight);
-  
+  ctx.moveTo(width / 2, -rooflineHeight);
+  ctx.lineTo(1 * (width / 2) + overhangWidth, -rooflineHeight);
+
   // roof
-  var angleInRadians = roofPitchAngleInDegrees * Math.PI/180
-  ctx.moveTo(-1*(width/2) - overhangWidth, -rooflineHeight);
-  var soffitToRoofApexHeight = ((width/2)+overhangWidth)/Math.tan(angleInRadians/2);
+  var angleInRadians = roofPitchAngleInDegrees * Math.PI / 180
+  ctx.moveTo(-1 * (width / 2) - overhangWidth, -rooflineHeight);
+  var soffitToRoofApexHeight = ((width / 2) + overhangWidth) / Math.tan(angleInRadians / 2);
   ctx.lineTo(0, -1 * soffitToRoofApexHeight - rooflineHeight);
-  ctx.lineTo(width/2 + overhangWidth, -rooflineHeight);
+  ctx.lineTo(width / 2 + overhangWidth, -rooflineHeight);
   ctx.stroke();
 
   // building height measurement
